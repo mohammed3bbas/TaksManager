@@ -15,6 +15,4 @@ public class TaskType {
 
     @OneToMany(mappedBy = "taskType", cascade = CascadeType.ALL)
     private List<TaskField> fields = new ArrayList<>();
-
-
 }

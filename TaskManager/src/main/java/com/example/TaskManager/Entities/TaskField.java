@@ -10,12 +10,11 @@ public class TaskField {
 
     private String name;
 
-    private String type;
+    private String value;
 
     @ManyToOne
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
-
 
 }
 

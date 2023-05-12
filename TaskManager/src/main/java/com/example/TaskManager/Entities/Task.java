@@ -21,7 +21,5 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
-
-    // constructors, getters, and setters
 }
 
