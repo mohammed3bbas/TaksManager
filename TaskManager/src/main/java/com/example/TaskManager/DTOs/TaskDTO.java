@@ -66,15 +66,4 @@ public class TaskDTO {
         this.id = id;
     }
 
-    public static Task createTask(TaskDTO taskDTO){
-        Task task = new Task();
-        if(taskDTO.getId() != null){
-            task.setId(taskDTO.getId());
-        }
-        task.setCreationDateToNow();
-        task.setDueDate(LocalDate.parse(taskDTO.getDueDate()));
-        task.setDescription(taskDTO.getDescription());
-        task.setName(taskDTO.getName());
-        return task;
-    }
 }
