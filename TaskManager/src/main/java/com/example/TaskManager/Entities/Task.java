@@ -22,15 +22,6 @@ public class Task {
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 
-    public Task(Long id, String name, String description, LocalDate dueDate, LocalDate creationDate, TaskType taskType) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.creationDate = creationDate;
-        this.taskType = taskType;
-    }
-
     public Long getId() {
         return id;
     }
@@ -68,6 +59,10 @@ public class Task {
     }
 
     public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setCreationDateToNow() {
         this.creationDate = LocalDate.now();
     }
 

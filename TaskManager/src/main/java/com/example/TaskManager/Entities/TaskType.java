@@ -16,11 +16,6 @@ public class TaskType {
     @OneToMany(mappedBy = "taskType", cascade = CascadeType.ALL)
     private List<TaskField> fields = new ArrayList<>();
 
-    public TaskType(Long id, String name, List<TaskField> fields) {
-        this.id = id;
-        this.name = name;
-        this.fields = fields;
-    }
 
     public Long getId() {
         return id;

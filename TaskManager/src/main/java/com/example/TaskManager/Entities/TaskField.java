@@ -16,12 +16,6 @@ public class TaskField {
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 
-    public TaskField(Long id, String name, String value, TaskType taskType) {
-        this.id = id;
-        this.name = name;
-        this.value = value;
-        this.taskType = taskType;
-    }
 
     public Long getId() {
         return id;
