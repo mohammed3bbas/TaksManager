@@ -8,6 +8,7 @@ public class TaskFieldDTO implements Serializable {
 
     private String name;
 
+    private String fieldType;
 
     private Long taskTypeId;
 
@@ -34,5 +35,13 @@ public class TaskFieldDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFieldType() {
+        return fieldType;
+    }
+
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
     }
 }

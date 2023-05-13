@@ -1,5 +1,7 @@
 package com.example.TaskManager.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,7 +14,9 @@ public class TaskField implements Serializable {
 
     private String name;
 
+    private String fieldType;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 
@@ -39,6 +43,14 @@ public class TaskField implements Serializable {
 
     public void setTaskType(TaskType taskType) {
         this.taskType = taskType;
+    }
+
+    public String getFieldType() {
+        return fieldType;
+    }
+
+    public void setFieldType(String fieldType) {
+        this.fieldType = fieldType;
     }
 }
 

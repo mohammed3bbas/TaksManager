@@ -52,6 +52,7 @@ public class TaskFieldServices {
             taskField.setId(taskFieldDTO.getId());
         }
         taskField.setName(taskFieldDTO.getName());
+        taskField.setFieldType(taskFieldDTO.getFieldType());
         taskField.setTaskType(taskTypeRepo.findById(taskFieldDTO.getTaskTypeId()).get());
         return taskField;
     }
