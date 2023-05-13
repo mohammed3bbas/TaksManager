@@ -4,17 +4,14 @@ import java.io.Serializable;
 
 public class TaskFieldDTO implements Serializable {
 
+    private  Long id;
+
     private String name;
 
     private String value;
 
     private Long taskTypeId;
 
-    public TaskFieldDTO(String name, String value, Long taskTypeId) {
-        this.name = name;
-        this.value = value;
-        this.taskTypeId = taskTypeId;
-    }
 
     public String getName() {
         return name;
@@ -38,5 +35,13 @@ public class TaskFieldDTO implements Serializable {
 
     public void setTaskTypeId(Long taskTypeId) {
         this.taskTypeId = taskTypeId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

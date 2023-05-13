@@ -6,11 +6,11 @@ import java.io.Serializable;
 
 public class TaskTypeDTO implements Serializable {
 
-    private Long Id;
+    private Long id;
     private String name;
 
     public TaskTypeDTO(Long id, String name) {
-        Id = id;
+        id = this.id;
         this.name = name;
     }
 
@@ -27,10 +27,10 @@ public class TaskTypeDTO implements Serializable {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 }
