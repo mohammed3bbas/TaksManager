@@ -2,7 +2,9 @@ package com.example.TaskManager.DTOs;
 
 import com.example.TaskManager.Entities.TaskType;
 
-public class TaskTypeDTO {
+import java.io.Serializable;
+
+public class TaskTypeDTO implements Serializable {
 
     private Long Id;
     private String name;

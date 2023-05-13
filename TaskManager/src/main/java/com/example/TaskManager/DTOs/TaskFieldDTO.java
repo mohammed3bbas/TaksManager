@@ -1,6 +1,8 @@
 package com.example.TaskManager.DTOs;
 
-public class TaskFieldDTO {
+import java.io.Serializable;
+
+public class TaskFieldDTO implements Serializable {
 
     private String name;
 

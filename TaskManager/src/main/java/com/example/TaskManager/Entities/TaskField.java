@@ -1,9 +1,11 @@
 package com.example.TaskManager.Entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "task_field")
-public class TaskField {
+public class TaskField implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

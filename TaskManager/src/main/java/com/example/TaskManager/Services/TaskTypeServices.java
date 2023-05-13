@@ -3,10 +3,14 @@ package com.example.TaskManager.Services;
 import com.example.TaskManager.DTOs.TaskTypeDTO;
 import com.example.TaskManager.Entities.TaskType;
 import com.example.TaskManager.Repo.TaskTypeRepo;
+import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class TaskTypeServices {
     private final TaskTypeRepo taskTypeRepo;
 

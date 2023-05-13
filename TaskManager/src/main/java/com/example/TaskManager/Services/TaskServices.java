@@ -4,11 +4,16 @@ import com.example.TaskManager.DTOs.TaskDTO;
 import com.example.TaskManager.Entities.Task;
 import com.example.TaskManager.Repo.TaskRepo;
 import com.example.TaskManager.Repo.TaskTypeRepo;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
+@Transactional
 public class TaskServices {
     private final TaskRepo taskRepo;
     private final TaskTypeRepo taskTypeRepo;
@@ -48,14 +53,14 @@ public class TaskServices {
 
     private Task createTaskFromDTO(TaskDTO taskDTO){
         Task task = new Task();
-        if(taskDTO.getId() != null){
+        if(taskDTO.getId() != null) {
             task.setId(taskDTO.getId());
         }
         task.setCreationDateToNow();
         task.setDueDate(LocalDate.parse(taskDTO.getDueDate()));
         task.setDescription(taskDTO.getDescription());
         task.setName(taskDTO.getName());
-        task.setTaskType(taskTypeRepo.getById(taskDTO.getId()));
+        task.setTaskType(taskTypeRepo.findById(taskDTO.getTaskTypeId()).get());
         return task;
     }
 

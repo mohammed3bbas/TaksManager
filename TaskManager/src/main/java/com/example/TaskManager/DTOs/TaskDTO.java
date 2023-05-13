@@ -2,29 +2,15 @@ package com.example.TaskManager.DTOs;
 
 import com.example.TaskManager.Entities.Task;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class TaskDTO {
-    private Long id;
+public class TaskDTO implements Serializable {
+    private Long id ;
     private String name;
     private String description;
     private String dueDate;
     private Long taskTypeId;
-
-    public TaskDTO(String name, String description, String dueDate, Long taskTypeId) {
-        this.name = name;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.taskTypeId = taskTypeId;
-    }
-
-    public TaskDTO(Long id, String name, String description, String dueDate, Long taskTypeId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.taskTypeId = taskTypeId;
-    }
 
     public String getName() {
         return name;
