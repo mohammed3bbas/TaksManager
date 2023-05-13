@@ -16,5 +16,43 @@ public class TaskField {
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 
+    public TaskField(Long id, String name, String value, TaskType taskType) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.taskType = taskType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public TaskType getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
+    }
 }
 

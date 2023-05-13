@@ -15,4 +15,34 @@ public class TaskType {
 
     @OneToMany(mappedBy = "taskType", cascade = CascadeType.ALL)
     private List<TaskField> fields = new ArrayList<>();
+
+    public TaskType(Long id, String name, List<TaskField> fields) {
+        this.id = id;
+        this.name = name;
+        this.fields = fields;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<TaskField> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<TaskField> fields) {
+        this.fields = fields;
+    }
 }
