@@ -8,7 +8,6 @@ public class TaskFieldDTO implements Serializable {
 
     private String name;
 
-    private String value;
 
     private Long taskTypeId;
 
@@ -19,14 +18,6 @@ public class TaskFieldDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     public Long getTaskTypeId() {

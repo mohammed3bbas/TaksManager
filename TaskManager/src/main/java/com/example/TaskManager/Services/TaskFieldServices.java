@@ -21,7 +21,7 @@ public class TaskFieldServices {
         this.taskTypeRepo = taskTypeRepo;
     }
 
-    public TaskField createTask(TaskFieldDTO taskFieldDTO) {
+    public TaskField createTaskField(TaskFieldDTO taskFieldDTO) {
         TaskField taskField = createTaskFieldFromDTO(taskFieldDTO);
         return taskFieldRepo.save(taskField);
     }
@@ -52,7 +52,6 @@ public class TaskFieldServices {
             taskField.setId(taskFieldDTO.getId());
         }
         taskField.setName(taskFieldDTO.getName());
-        taskField.setValue(taskFieldDTO.getValue());
         taskField.setTaskType(taskTypeRepo.findById(taskFieldDTO.getTaskTypeId()).get());
         return taskField;
     }
