@@ -1,5 +1,6 @@
 package com.example.TaskManager.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -18,7 +19,6 @@ public class FieldValue implements Serializable {
     private TaskField taskField;
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "task_id")
     private Task task;
 

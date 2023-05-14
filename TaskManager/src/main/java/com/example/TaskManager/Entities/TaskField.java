@@ -1,6 +1,6 @@
 package com.example.TaskManager.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,9 +16,8 @@ public class TaskField implements Serializable {
 
     private String fieldType;
 
-    private boolean isRequired = false;
+    private boolean isRequired ;
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 

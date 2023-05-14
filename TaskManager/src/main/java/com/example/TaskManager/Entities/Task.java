@@ -1,6 +1,6 @@
 package com.example.TaskManager.Entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,12 +23,11 @@ public class Task implements Serializable {
     private  LocalDate creationDate;
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     private List<FieldValue> fieldValues;
 
     public Long getId() {

@@ -47,7 +47,7 @@ public class TaskFieldDTO implements Serializable {
         this.fieldType = fieldType;
     }
 
-    public boolean isRequired() {
+    public boolean getIsRequired() {
         return isRequired;
     }
 

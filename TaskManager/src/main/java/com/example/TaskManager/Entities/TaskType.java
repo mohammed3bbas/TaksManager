@@ -1,5 +1,6 @@
 package com.example.TaskManager.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class TaskType implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "taskType", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     private List<TaskField> fields = new ArrayList<>();
 
 
