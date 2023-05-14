@@ -1,9 +1,7 @@
 package com.example.TaskManager.Controllers;
 
 import com.example.TaskManager.DTOs.FieldValueDTO;
-import com.example.TaskManager.DTOs.TaskDTO;
 import com.example.TaskManager.Entities.FieldValue;
-import com.example.TaskManager.Entities.Task;
 import com.example.TaskManager.Services.FieldValueServices;
 import org.springframework.web.bind.annotation.*;
 

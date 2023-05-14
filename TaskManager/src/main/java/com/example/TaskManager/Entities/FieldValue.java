@@ -1,5 +1,7 @@
 package com.example.TaskManager.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,6 +16,11 @@ public class FieldValue implements Serializable {
     @ManyToOne
     @JoinColumn(name = "task_field_id")
     private TaskField taskField;
+
+    @ManyToOne
+    @JsonManagedReference
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     private String field_value;
 
@@ -39,5 +46,13 @@ public class FieldValue implements Serializable {
 
     public void setField_value(String field_value) {
         this.field_value = field_value;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

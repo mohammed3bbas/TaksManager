@@ -1,8 +1,11 @@
 package com.example.TaskManager.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "task")
@@ -20,8 +23,13 @@ public class Task implements Serializable {
     private  LocalDate creationDate;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<FieldValue> fieldValues;
 
     public Long getId() {
         return id;

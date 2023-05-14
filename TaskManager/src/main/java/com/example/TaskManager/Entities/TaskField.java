@@ -15,6 +15,8 @@ public class TaskField implements Serializable {
     private String name;
 
     private String fieldType;
+
+    private boolean isRequired = false;
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "task_type_id")
@@ -51,6 +53,14 @@ public class TaskField implements Serializable {
 
     public void setFieldType(String fieldType) {
         this.fieldType = fieldType;
+    }
+
+    public boolean isRequired() {
+        return isRequired;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
     }
 }
 

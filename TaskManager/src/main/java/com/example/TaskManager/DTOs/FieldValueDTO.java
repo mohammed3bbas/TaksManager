@@ -7,6 +7,8 @@ public class FieldValueDTO implements Serializable {
 
     private Long taskFieldId;
 
+    private Long taskId;
+
     private String field_value;
 
     public Long getId() {
@@ -31,5 +33,13 @@ public class FieldValueDTO implements Serializable {
 
     public void setField_value(String field_value) {
         this.field_value = field_value;
+    }
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 }

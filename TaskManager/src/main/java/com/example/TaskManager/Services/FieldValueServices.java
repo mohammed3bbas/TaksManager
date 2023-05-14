@@ -2,9 +2,9 @@ package com.example.TaskManager.Services;
 
 import com.example.TaskManager.DTOs.FieldValueDTO;
 import com.example.TaskManager.Entities.FieldValue;
-import com.example.TaskManager.Entities.TaskField;
 import com.example.TaskManager.Repo.FieldValueRepo;
 import com.example.TaskManager.Repo.TaskFieldRepo;
+import com.example.TaskManager.Repo.TaskRepo;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,11 +16,13 @@ import java.util.Optional;
 public class FieldValueServices {
     private final FieldValueRepo fieldValueRepo;
     private final TaskFieldRepo taskFieldRepo;
+    private final TaskRepo taskRepo;
 
 
-    public FieldValueServices(FieldValueRepo fieldValueRepo, TaskFieldRepo taskFieldRepo) {
+    public FieldValueServices(FieldValueRepo fieldValueRepo, TaskFieldRepo taskFieldRepo, TaskRepo taskRepo) {
         this.fieldValueRepo = fieldValueRepo;
         this.taskFieldRepo = taskFieldRepo;
+        this.taskRepo = taskRepo;
     }
 
     public FieldValue createFieldValue(FieldValueDTO fieldValueDTO) {
@@ -55,6 +57,7 @@ public class FieldValueServices {
         }
         fieldValue.setField_value(fieldValueDTO.getField_value());
         fieldValue.setTaskField(taskFieldRepo.findById(fieldValueDTO.getTaskFieldId()).get());
+        fieldValue.setTask(taskRepo.findById(fieldValueDTO.getTaskId()).get());
         return fieldValue;
     }
 }

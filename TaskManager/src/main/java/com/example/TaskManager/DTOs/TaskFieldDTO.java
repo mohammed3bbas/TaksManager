@@ -10,6 +10,8 @@ public class TaskFieldDTO implements Serializable {
 
     private String fieldType;
 
+    private boolean isRequired;
+
     private Long taskTypeId;
 
 
@@ -43,5 +45,13 @@ public class TaskFieldDTO implements Serializable {
 
     public void setFieldType(String fieldType) {
         this.fieldType = fieldType;
+    }
+
+    public boolean isRequired() {
+        return isRequired;
+    }
+
+    public void setRequired(boolean required) {
+        isRequired = required;
     }
 }
