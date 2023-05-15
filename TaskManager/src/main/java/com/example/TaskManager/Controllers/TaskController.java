@@ -2,7 +2,7 @@ package com.example.TaskManager.Controllers;
 
 import com.example.TaskManager.DTOs.TaskDTO;
 import com.example.TaskManager.Entities.Task;
-import com.example.TaskManager.Services.TaskServices;
+import com.example.TaskManager.Services.Interfaces.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,21 +11,21 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
-    private final TaskServices taskServices;
+    private final TaskService taskService;
 
 
-    public TaskController(TaskServices taskServices) {
-        this.taskServices = taskServices;
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping()
     public List<Task> getAllTasks(){
-        List<Task> result = taskServices.getAllTasks();
+        List<Task> result = taskService.getAllTasks();
         return result;
     }
 
     @PostMapping()
     public Task addTask(@RequestBody TaskDTO taskDTO){
-        return taskServices.createTask(taskDTO);
+        return taskService.createTask(taskDTO);
     }
 }

@@ -2,7 +2,7 @@ package com.example.TaskManager.Controllers;
 
 import com.example.TaskManager.DTOs.FieldValueDTO;
 import com.example.TaskManager.Entities.FieldValue;
-import com.example.TaskManager.Services.FieldValueServices;
+import com.example.TaskManager.Services.Interfaces.FieldValueService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,21 +11,21 @@ import java.util.List;
 @RequestMapping("/field-value")
 public class FieldValueController {
 
-    private final FieldValueServices fieldValueServices;
+    private final FieldValueService fieldValueService;
 
-    public FieldValueController(FieldValueServices fieldValueServices) {
-        this.fieldValueServices = fieldValueServices;
+    public FieldValueController(FieldValueService fieldValueService) {
+        this.fieldValueService = fieldValueService;
     }
 
 
     @GetMapping()
     public List<FieldValue> getAllTasks(){
-        List<FieldValue> result = fieldValueServices.getAllFieldValues();
+        List<FieldValue> result = fieldValueService.getAllFieldValues();
         return result;
     }
 
     @PostMapping()
     public FieldValue addTask(@RequestBody FieldValueDTO fieldValueDTO){
-        return fieldValueServices.createFieldValue(fieldValueDTO);
+        return fieldValueService.createFieldValue(fieldValueDTO);
     }
 }

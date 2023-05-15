@@ -2,7 +2,7 @@ package com.example.TaskManager.Controllers;
 
 import com.example.TaskManager.DTOs.TaskTypeDTO;
 import com.example.TaskManager.Entities.TaskType;
-import com.example.TaskManager.Services.TaskTypeServices;
+import com.example.TaskManager.Services.Interfaces.TaskTypeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,20 +10,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/task-types")
 public class TaskTypeController {
-    private final TaskTypeServices taskTypeServices;
+    private final TaskTypeService taskTypeService;
 
-    public TaskTypeController(TaskTypeServices taskTypeServices) {
-        this.taskTypeServices = taskTypeServices;
+    public TaskTypeController(TaskTypeService taskTypeService) {
+        this.taskTypeService = taskTypeService;
     }
 
     @GetMapping()
     public List<TaskType> getAllTasks(){
-        List<TaskType> result = taskTypeServices.getAllTaskTypes();
+        List<TaskType> result = taskTypeService.getAllTaskTypes();
         return result;
     }
 
     @PostMapping()
     public TaskType addTaskType(@RequestBody TaskTypeDTO taskTypeDTO){
-        return taskTypeServices.createTaskType(taskTypeDTO);
+        return taskTypeService.createTaskType(taskTypeDTO);
     }
 }
