@@ -1,5 +1,5 @@
 import { TaskType } from 'src/app/models/entities/task-type';
-import { TaskTypeService } from './../../services/task-type.service';
+import { TaskTypeService } from './../../services/task-type/task-type.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
