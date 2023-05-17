@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaskTypeDTO } from 'src/app/models/DTOs/task-type-DTO';
 import { TaskType } from 'src/app/models/entities/task-type';
+import { TaskTypeService } from 'src/app/services/task-type/task-type.service';
 
 @Component({
   selector: 'app-task-type-form',
@@ -9,26 +11,28 @@ import { TaskType } from 'src/app/models/entities/task-type';
 })
 export class TaskTypeFormComponent {
   taskTypeForm: FormGroup;
+  @Output() addNewTaskType: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private taskTypeService: TaskTypeService) {
     this.taskTypeForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: ['', Validators.required],
-      // Add more form controls based on TaskFields
     });
   }
 
   onSubmit(): void {
+    console.log(this.taskTypeForm.value.name);
     if (this.taskTypeForm.valid) {
-      const newTaskType: TaskType = {
-        id: 0, // Assign a suitable ID or handle ID generation
+      const newTaskTypeDTO: TaskTypeDTO = {
         name: this.taskTypeForm.value.name
       };
 
-      // Perform further operations with the new task type, e.g., save to a database
-
-      // Reset the form
-      this.taskTypeForm.reset();
+      this.taskTypeService.addTaskType(newTaskTypeDTO).subscribe((result: TaskType) => {
+        console.log('Task type added:', result);
+        this.addNewTaskType.emit();
+        this.taskTypeForm.reset();
+      }, (error) => {
+        console.error('Error adding task type:', error);
+      });
     }
   }
 }

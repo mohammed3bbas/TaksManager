@@ -11,7 +11,9 @@ export class TabsComponent implements OnInit {
 
   taskTypes: TaskType[] = [];
   @Output() tabSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() addNewTaskType: EventEmitter<any> = new EventEmitter();
   activeTabId: number | undefined;
+  isButtonDisabled: boolean = false;
 
   constructor(private TaskTypeService: TaskTypeService) { }
 
@@ -27,4 +29,13 @@ export class TabsComponent implements OnInit {
     this.activeTabId = value;
     this.tabSelected.emit(value);
   }
+
+  addTaskType(){
+    console.log("add task type");
+    // this.isButtonDisabled = !this.isButtonDisabled
+    // this.activeTabId = -1 ;
+    this.addNewTaskType.emit();
+  }
+
+
 }

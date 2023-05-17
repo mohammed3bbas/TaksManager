@@ -1,10 +1,10 @@
 <nav>
-    <ul class="nav nav-tabs justify-content-center">
+    <ul class="nav nav-tabs justify-content-center dark-theme">
         <li class="nav-item" *ngFor="let taskType of taskTypes">
-            <button class="nav-link" [class.active]="activeTabId === taskType.id" (click)="selectTab(taskType.id)">{{taskType.name}}</button>
+            <button class="nav-link" [class.active]="activeTabId === taskType.id" (click)="selectTab(taskType.id)" [disabled]="isButtonDisabled" >{{taskType.name}}</button>
         </li>
-        <button type="button" class="btn btn-transparent custom-green-text">
-            <i class=" fa fa-plus " aria-hidden="true "></i>
+        <button type="button" (click)="addTaskType()" class="btn btn-transparent custom-green-text" >
+            <i class=" fa fa-plus" aria-hidden="true "></i>
         </button>
         <button type="button" class="btn btn-transparent custom-red-text">
             <i class=" fa fa-trash " aria-hidden="true "></i>
