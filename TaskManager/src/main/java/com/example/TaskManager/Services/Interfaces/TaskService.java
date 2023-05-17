@@ -2,6 +2,7 @@ package com.example.TaskManager.Services.Interfaces;
 
 import com.example.TaskManager.DTOs.TaskDTO;
 import com.example.TaskManager.Entities.Task;
+import com.example.TaskManager.Entities.TaskType;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,4 +19,6 @@ public interface TaskService {
     Task updateTask(TaskDTO taskDTO);
 
     void deleteTaskById(Long id);
+
+    List<Task> getTasksByTaskType(TaskType taskType);
 }

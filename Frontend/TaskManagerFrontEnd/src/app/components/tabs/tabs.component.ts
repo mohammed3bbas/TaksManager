@@ -1,6 +1,6 @@
 import { TaskType } from 'src/app/models/entities/task-type';
 import { TaskTypeService } from './../../services/task-type/task-type.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
-  taskTypes: TaskType[] =[];
+  taskTypes: TaskType[] = [];
+  @Output() tabSelected: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private TaskTypeService: TaskTypeService) { }
 
@@ -20,4 +21,8 @@ export class TabsComponent implements OnInit {
     });
   }
 
+  selectTab(value: number): void {
+    console.log("tabs");
+    this.tabSelected.emit(value);
+  }
 }

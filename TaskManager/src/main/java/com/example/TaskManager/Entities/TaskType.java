@@ -21,6 +21,13 @@ public class TaskType implements Serializable {
     @JsonIgnore
     private List<TaskField> fields = new ArrayList<>();
 
+    public TaskType() {
+    }
+
+    public TaskType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

@@ -4,6 +4,7 @@ import com.example.TaskManager.DTOs.TaskDTO;
 import com.example.TaskManager.Entities.Task;
 import com.example.TaskManager.Repo.TaskRepo;
 import com.example.TaskManager.Repo.TaskTypeRepo;
+import com.example.TaskManager.Entities.TaskType;
 import com.example.TaskManager.Services.Interfaces.TaskService;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +57,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTaskById(Long id){
         taskRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Task> getTasksByTaskType(TaskType taskType) {
+        return taskRepo.findByTaskType(taskType);
     }
 
     private Task createTaskFromDTO(TaskDTO taskDTO){
