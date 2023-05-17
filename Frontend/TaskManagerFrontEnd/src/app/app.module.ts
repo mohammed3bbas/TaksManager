@@ -7,17 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TasksComponent } from './components/tasks/tasks/tasks.component';
+import { TaskTypeFormComponent } from './components/task-type-form/task-type-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabsComponent,
-    TasksComponent
+    TasksComponent,
+    TaskTypeFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
