@@ -11,6 +11,7 @@ export class TabsComponent implements OnInit {
 
   taskTypes: TaskType[] = [];
   @Output() tabSelected: EventEmitter<number> = new EventEmitter<number>();
+  activeTabId: number | undefined;
 
   constructor(private TaskTypeService: TaskTypeService) { }
 
@@ -23,6 +24,7 @@ export class TabsComponent implements OnInit {
 
   selectTab(value: number): void {
     console.log("tabs");
+    this.activeTabId = value;
     this.tabSelected.emit(value);
   }
 }
