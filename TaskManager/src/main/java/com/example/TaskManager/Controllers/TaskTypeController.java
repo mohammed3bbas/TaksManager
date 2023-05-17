@@ -26,4 +26,9 @@ public class TaskTypeController {
     public TaskType addTaskType(@RequestBody TaskTypeDTO taskTypeDTO){
         return taskTypeService.createTaskType(taskTypeDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteTaskTypeById(@PathVariable Long id){
+        taskTypeService.deleteTaskTypeById(id);
+    }
 }

@@ -12,7 +12,7 @@ export class TabsComponent implements OnInit {
   taskTypes: TaskType[] = [];
   @Output() tabSelected: EventEmitter<number> = new EventEmitter<number>();
   @Output() addNewTaskType: EventEmitter<any> = new EventEmitter();
-  activeTabId: number | undefined;
+  activeTabId: number = -1;
   isButtonDisabled: boolean = false;
 
   constructor(private TaskTypeService: TaskTypeService) { }
@@ -35,6 +35,13 @@ export class TabsComponent implements OnInit {
     // this.isButtonDisabled = !this.isButtonDisabled
     // this.activeTabId = -1 ;
     this.addNewTaskType.emit();
+  }
+
+
+  deleteTaskType(){
+    this.TaskTypeService.deleteTaskType(this.activeTabId).subscribe(()=>{
+      this.ngOnInit();
+    });
   }
 
 

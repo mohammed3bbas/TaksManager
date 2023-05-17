@@ -20,4 +20,8 @@ export class TaskTypeService {
   public addTaskType(taskTypeDTO :TaskTypeDTO){
     return this.http.post<TaskType>(`${this.apiServerUrl}/task-types`,taskTypeDTO)
   }
+
+  public deleteTaskType(id : number)  : Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/task-types/${id}`,)
+  }
 }
