@@ -1,5 +1,7 @@
+import { TaskField } from './../../../models/entities/task-field';
 import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
+import { TaskFieldService } from './../../../services/task-field/task-field.service';
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TabsComponent } from '../../tabs/tabs.component';
 import { Router } from '@angular/router';
@@ -16,16 +18,24 @@ export class TasksComponent {
   tasks: Task[] = [];
   taskTypeId: number = 0;
   filteredTasks: Task[] = [];
-  completedTasks: Task[] = [];
+  taskFields: TaskField[] = [];
+  filteredTaskFields : TaskField[] = [];
   @ViewChild(TabsComponent) tabsComponent: TabsComponent | undefined;
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private taskFieldService: TaskFieldService, private router: Router) { }
 
   onTabSelected(value: number): void {
     console.log(value);
     this.taskTypeId = value;
-    this.fetchTasksAndFilter()
+    this.fetchTasksAndFilter();
+    this.fetchTaskFields();
+  }
 
+  fetchTaskFields() {
+    this.taskFieldService.getAllTaskFields().subscribe((response: TaskField[]) => {
+      this.taskFields = response;
+      this.filteredTaskFields = this.taskFields.filter(taskField => taskField.taskType.id === this.taskTypeId);
+    });
   }
 
   fetchTasksAndFilter() {
@@ -71,22 +81,17 @@ export class TasksComponent {
   }
 
   deleteTask(event: any, taskId: number): void {
-    
-    if(event){
+
+    if (event) {
       this.taskService.deleteTask(taskId).subscribe(
         () => {
           this.fetchTasksAndFilter();
-          
+
         },
         (error) => {
           console.error('Error deleting task :', error);
         }
       );
-      
-      
-
     }
-    
-
   }
 }
