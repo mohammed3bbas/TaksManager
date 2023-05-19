@@ -1,7 +1,8 @@
 import { TaskService } from './../../services/task/task.service';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { TaskDTO } from 'src/app/models/DTOs/task-DTO';
 import { Task } from 'src/app/models/entities/task';
 
@@ -14,7 +15,7 @@ export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
   taskTypeId: number = -1;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private taskService: TaskService , private router: Router) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private taskService: TaskService , private location: Location) {
     this.taskForm = this.formBuilder.group({
       name: ['', Validators.required],
       description : [''] ,
@@ -46,7 +47,7 @@ export class TaskFormComponent implements OnInit {
       this.taskService.addTask(newTaskDTO).subscribe(
         (result: Task) => {
           console.log('Task added:', result);
-          this.router.navigate(['']);
+          this.location.back();
         },
         (error) => {
           console.error('Error adding task:', error);

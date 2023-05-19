@@ -1,6 +1,7 @@
 import { TaskType } from 'src/app/models/entities/task-type';
 import { TaskTypeService } from './../../services/task-type/task-type.service';
-import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component,ViewEncapsulation, EventEmitter, Output, OnInit, ViewChildren, QueryList, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -16,7 +17,8 @@ export class TabsComponent implements OnInit {
   activeTabId: number = -1;
   isButtonDisabled: boolean = false;
 
-  constructor(private TaskTypeService: TaskTypeService) { }
+
+  constructor(private TaskTypeService: TaskTypeService, private router: Router, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.TaskTypeService.getAllTaskTypes().subscribe((response: TaskType[]) => {
@@ -25,6 +27,7 @@ export class TabsComponent implements OnInit {
       if (this.taskTypes.length > 0) {
         this.activeTabId = this.taskTypes[0].id;
       }
+
     });
   }
 
@@ -34,16 +37,13 @@ export class TabsComponent implements OnInit {
     this.tabSelected.emit(value);
   }
 
-  addTaskType(){
-    console.log("add task type");
-    // this.isButtonDisabled = !this.isButtonDisabled
-    // this.activeTabId = -1 ;
-    this.addNewTaskType.emit();
+  addTaskType() {
+    this.router.navigate(['/new-taskType']);
   }
 
 
-  deleteTaskType(){
-    this.TaskTypeService.deleteTaskType(this.activeTabId).subscribe(()=>{
+  deleteTaskType() {
+    this.TaskTypeService.deleteTaskType(this.activeTabId).subscribe(() => {
       this.ngOnInit();
     });
   }

@@ -15,7 +15,6 @@ export class TasksComponent {
   tasks: Task[] = [];
   taskTypeId: number = 0;
   filteredTasks: Task[] = [];
-  addNewTaskTypeMode: boolean = false;
   @Output() refetchTabs: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild(TabsComponent) tabsComponent: TabsComponent | undefined;
 
@@ -31,10 +30,6 @@ export class TasksComponent {
     });
   }
 
-  switchAddNewTaskTypeMode() {
-    this.addNewTaskTypeMode = !this.addNewTaskTypeMode;
-  }
-
   onAddNewTaskType(): void {
     console.log("we are here")
     if (this.tabsComponent) {
@@ -44,6 +39,5 @@ export class TasksComponent {
 
   openNewTaskForm() {
     this.router.navigate(['/new-task/task-type/', this.taskTypeId]);
-
   }
 }

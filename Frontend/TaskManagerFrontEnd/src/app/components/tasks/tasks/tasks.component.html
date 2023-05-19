@@ -1,7 +1,7 @@
-<app-tabs (tabSelected)="onTabSelected($event)" (addNewTaskType)="switchAddNewTaskTypeMode()"></app-tabs>
+<app-tabs (tabSelected)="onTabSelected($event)"></app-tabs>
 
 
-<div *ngIf="!addNewTaskTypeMode">
+<div>
     <ul class="list-group list-group-flush "  *ngFor="let task of filteredTasks">
         <li class="list-group-item tasks-list-group">
             <h1>{{task.name}}</h1>
@@ -13,6 +13,3 @@
         <i class="fa fa-plus " aria-hidden="true "> Task</i>
     </button>
 </div>
-
-<app-task-type-form *ngIf="addNewTaskTypeMode" (addNewTaskType)="onAddNewTaskType()"></app-task-type-form>
-<!-- Routing is a better approach  -->

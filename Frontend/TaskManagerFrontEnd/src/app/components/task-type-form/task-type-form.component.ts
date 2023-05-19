@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { TaskTypeDTO } from 'src/app/models/DTOs/task-type-DTO';
 import { TaskType } from 'src/app/models/entities/task-type';
 import { TaskTypeService } from 'src/app/services/task-type/task-type.service';
@@ -11,9 +12,8 @@ import { TaskTypeService } from 'src/app/services/task-type/task-type.service';
 })
 export class TaskTypeFormComponent {
   taskTypeForm: FormGroup;
-  @Output() addNewTaskType: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private formBuilder: FormBuilder, private taskTypeService: TaskTypeService) {
+  constructor(private formBuilder: FormBuilder, private taskTypeService: TaskTypeService, private location: Location) {
     this.taskTypeForm = this.formBuilder.group({
       name: ['', Validators.required],
     });
@@ -28,8 +28,7 @@ export class TaskTypeFormComponent {
 
       this.taskTypeService.addTaskType(newTaskTypeDTO).subscribe((result: TaskType) => {
         console.log('Task type added:', result);
-        this.addNewTaskType.emit();
-        this.taskTypeForm.reset();
+        this.location.back();
       }, (error) => {
         console.error('Error adding task type:', error);
       });
