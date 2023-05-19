@@ -12,10 +12,10 @@
             <th scope="col">Due Date</th>
           </tr>
         </thead>
-        <tbody *ngFor="let task of filteredTasks">
+        <tbody *ngFor="let task of filteredTasks" [ngClass]="{ 'completed': task.done }">
           <tr>
             <th>
-                <input class="form-check-input" type="checkbox" [value]="task.id" (change)="updateCheckedTasks($event, task.id)">
+              <input class="form-check-input" type="checkbox" [value]="task.id" [checked]="task.done" (change)="updateCheckedTasks($event, task.id)">
             </th>
             <th scope="row">{{task.id}}</th>
             <td>{{task.name}}</td>
@@ -26,6 +26,6 @@
         </tbody>
       </table>
     <button type="button" (click)="openNewTaskForm()" class="btn btn-transparent add-task-button" >
-        <i class="fa fa-plus " aria-hidden="true "> Task</i>
+        <i class="fa fa-plus" aria-hidden="true"> Task</i>
     </button>
 </div>

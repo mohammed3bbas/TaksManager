@@ -1,6 +1,6 @@
 import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
-import { Component, EventEmitter, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TabsComponent } from '../../tabs/tabs.component';
 import { Router } from '@angular/router';
 import { TaskDTO } from 'src/app/models/DTOs/task-DTO';
@@ -32,8 +32,8 @@ export class TasksComponent {
     this.taskService.getAllTasks().subscribe((response: Task[]) => {
       console.log(response);
       this.tasks = response;
-      this.filteredTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId && task.done === false);
-      this.completedTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId && task.done === true);
+      this.filteredTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId);
+      // this.completedTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId && task.done === true);
     });
   }
 
@@ -59,7 +59,7 @@ export class TasksComponent {
           description: checkedTask.description,
           dueDate: checkedTask.dueDate.toString(),
           taskTypeId: checkedTask.taskType.id,
-          done: true
+          done: !checkedTask.done
         }
         this.taskService.updateTask(newTaskDTO).subscribe((result: Task) => {
           this.fetchTasksAndFilter();
@@ -67,9 +67,7 @@ export class TasksComponent {
           (error) => {
             console.error('Error updating task:', error);
           });;
-
       }
-
     }
   }
 }

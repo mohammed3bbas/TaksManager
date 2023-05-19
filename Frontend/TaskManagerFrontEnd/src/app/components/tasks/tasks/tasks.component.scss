@@ -12,3 +12,21 @@
     background-color: #EEEEEE;
     color: #00ADB5
 }
+
+.completed {
+    text-decoration: line-through;
+    background-color: #222831;
+    color: #00ADB5;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  td, th {
+    padding: 8px;
+  }
+  
+  table.table tbody tr.done input[type="checkbox"] {
+    cursor: not-allowed;
+  }
