@@ -22,6 +22,9 @@ export class TabsComponent implements OnInit {
     this.TaskTypeService.getAllTaskTypes().subscribe((response: TaskType[]) => {
       console.log(response);
       this.taskTypes = response;
+      if (this.taskTypes.length > 0) {
+        this.activeTabId = this.taskTypes[0].id;
+      }
     });
   }
 
