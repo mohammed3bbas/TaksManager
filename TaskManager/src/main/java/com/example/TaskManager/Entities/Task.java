@@ -22,6 +22,8 @@ public class Task implements Serializable {
 
     private  LocalDate creationDate;
 
+    private boolean isDone;
+
     @ManyToOne
     @JoinColumn(name = "task_type_id")
     private TaskType taskType;
@@ -80,6 +82,14 @@ public class Task implements Serializable {
 
     public void setTaskType(TaskType taskType) {
         this.taskType = taskType;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }
 

@@ -5,6 +5,7 @@ export class TaskDTO {
         public name: string,
         public description: string,
         public dueDate: string,
-        public taskTypeId: number
+        public taskTypeId: number,
+        public done : boolean
     ) { }
 }

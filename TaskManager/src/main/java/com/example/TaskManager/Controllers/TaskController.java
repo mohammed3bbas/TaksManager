@@ -39,4 +39,9 @@ public class TaskController {
         Optional<TaskType> taskType = taskTypeService.findTaskTypeById(id);
         return taskService.getTasksByTaskType(taskType.get());
     }
+
+    @PutMapping()
+    public Task updateTask(@RequestBody TaskDTO taskDTO){
+        return taskService.updateTask(taskDTO);
+    }
 }

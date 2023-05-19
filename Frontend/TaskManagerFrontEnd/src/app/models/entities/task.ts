@@ -6,4 +6,5 @@ export interface Task {
     dueDate: Date;
     creationDate: Date;
     taskType: TaskType;
+    done : boolean;
 }

@@ -11,6 +11,7 @@ public class TaskDTO implements Serializable {
     private String description;
     private String dueDate;
     private Long taskTypeId;
+    private boolean isDone;
 
     public String getName() {
         return name;
@@ -52,4 +53,11 @@ public class TaskDTO implements Serializable {
         this.id = id;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
 }

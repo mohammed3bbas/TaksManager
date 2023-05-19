@@ -41,7 +41,8 @@ export class TaskFormComponent implements OnInit {
         name: this.taskForm.value.name,
         description: this.taskForm.value.description,
         dueDate: this.taskForm.value.dueDate,
-        taskTypeId: this.taskForm.value.taskTypeId
+        taskTypeId: this.taskForm.value.taskTypeId,
+        done : false
       };
 
       this.taskService.addTask(newTaskDTO).subscribe(

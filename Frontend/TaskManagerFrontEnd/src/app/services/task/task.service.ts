@@ -27,4 +27,8 @@ export class TaskService {
   addTask(taskDTO : TaskDTO){
     return this.http.post<Task>(this.apiServerUrl,taskDTO);
   }
+
+  updateTask(taskDTO : TaskDTO){
+    return this.http.put<Task>(this.apiServerUrl,taskDTO);
+  }
 }
