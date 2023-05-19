@@ -2,6 +2,7 @@ import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
 import { Component, EventEmitter, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TabsComponent } from '../../tabs/tabs.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -18,7 +19,7 @@ export class TasksComponent {
   @Output() refetchTabs: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild(TabsComponent) tabsComponent: TabsComponent | undefined;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   onTabSelected(value: number): void {
     console.log(value);
@@ -39,6 +40,10 @@ export class TasksComponent {
     if (this.tabsComponent) {
       this.tabsComponent.ngOnInit();
     }
+  }
+
+  openNewTaskForm() {
+    this.router.navigate(['/new-task/task-type/', this.taskTypeId]);
 
   }
 }

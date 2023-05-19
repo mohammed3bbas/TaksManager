@@ -9,13 +9,15 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TasksComponent } from './components/tasks/tasks/tasks.component';
 import { TaskTypeFormComponent } from './components/task-type-form/task-type-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabsComponent,
     TasksComponent,
-    TaskTypeFormComponent
+    TaskTypeFormComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

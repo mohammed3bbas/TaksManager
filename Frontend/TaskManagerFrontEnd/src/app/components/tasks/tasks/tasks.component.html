@@ -1,6 +1,3 @@
-
-
-
 <app-tabs (tabSelected)="onTabSelected($event)" (addNewTaskType)="switchAddNewTaskTypeMode()"></app-tabs>
 
 
@@ -12,7 +9,7 @@
         </li>
 
     </ul>
-    <button type="button " class="btn btn-transparent add-task-button">
+    <button type="button" (click)="openNewTaskForm()" class="btn btn-transparent add-task-button" >
         <i class="fa fa-plus " aria-hidden="true "> Task</i>
     </button>
 </div>
