@@ -5,5 +5,5 @@ export interface FieldValue {
     id: number;
     taskField: TaskField;
     task: Task;
-    fieldValue: string;
+    field_value: string;
 }

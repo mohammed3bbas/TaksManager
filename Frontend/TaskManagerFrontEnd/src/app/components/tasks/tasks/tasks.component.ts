@@ -1,3 +1,5 @@
+import { FieldValue } from './../../../models/entities/field-value';
+import { FieldValueService } from './../../../services/field-value/field-value.service';
 import { TaskField } from './../../../models/entities/task-field';
 import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
@@ -19,16 +21,23 @@ export class TasksComponent {
   taskTypeId: number = 0;
   filteredTasks: Task[] = [];
   taskFields: TaskField[] = [];
-  filteredTaskFields : TaskField[] = [];
+  filteredFieldValues: FieldValue[] = [];
+  FieldValues: FieldValue[] = [];
+  filteredTaskFields: TaskField[] = [];
   @ViewChild(TabsComponent) tabsComponent: TabsComponent | undefined;
 
-  constructor(private taskService: TaskService, private taskFieldService: TaskFieldService, private router: Router) { }
+  constructor(
+    private taskService: TaskService,
+    private taskFieldService: TaskFieldService,
+    private fieldValueService: FieldValueService,
+    private router: Router) { }
 
   onTabSelected(value: number): void {
     console.log(value);
     this.taskTypeId = value;
     this.fetchTasksAndFilter();
     this.fetchTaskFields();
+    this.fetchFieldValues()
   }
 
   fetchTaskFields() {
@@ -40,10 +49,20 @@ export class TasksComponent {
 
   fetchTasksAndFilter() {
     this.taskService.getAllTasks().subscribe((response: Task[]) => {
-      console.log(response);
+      // console.log(response);
       this.tasks = response;
       this.filteredTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId);
     });
+  }
+
+  fetchFieldValues() {
+    this.fieldValueService.getAllFieldValues().subscribe((response: FieldValue[]) => {
+      console.log(response);
+      this.FieldValues = response;
+      this.filteredFieldValues = this.FieldValues.filter(fieldValue => fieldValue.task.taskType.id === this.taskTypeId);
+      console.log(this.filteredFieldValues)
+    });
+
   }
 
   onAddNewTaskType(): void {
@@ -94,4 +113,18 @@ export class TasksComponent {
       );
     }
   }
+
+  hasFieldValue(taskId: number, fieldId: number): boolean {
+    return this.filteredFieldValues.some(
+      (fieldValue) => fieldValue.task.id === taskId && fieldValue.taskField.id === fieldId
+    );
+  }
+  
+  getFieldValue(taskId: number, fieldId: number): string {
+    const fieldValue = this.filteredFieldValues.find(
+      (fieldValue) => fieldValue.task.id === taskId && fieldValue.taskField.id === fieldId
+    );
+    return fieldValue ? fieldValue.field_value : '';
+  }
+  
 }

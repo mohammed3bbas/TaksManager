@@ -19,13 +19,13 @@ public class FieldValueController {
 
 
     @GetMapping()
-    public List<FieldValue> getAllTasks(){
+    public List<FieldValue> getAllFieldValues(){
         List<FieldValue> result = fieldValueService.getAllFieldValues();
         return result;
     }
 
     @PostMapping()
-    public FieldValue addTask(@RequestBody FieldValueDTO fieldValueDTO){
+    public FieldValue addFieldValue(@RequestBody FieldValueDTO fieldValueDTO){
         return fieldValueService.createFieldValue(fieldValueDTO);
     }
 }
