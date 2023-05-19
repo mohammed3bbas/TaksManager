@@ -1,14 +1,26 @@
 <app-tabs (tabSelected)="onTabSelected($event)"></app-tabs>
 
-
-<div>
-    <ul class="list-group list-group-flush "  *ngFor="let task of filteredTasks">
-        <li class="list-group-item tasks-list-group">
-            <h1>{{task.name}}</h1>
-            <h6>{{task.taskType.name}}</h6>
-        </li>
-
-    </ul>
+<div *ngIf="taskTypeId != 0">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Due Date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let task of filteredTasks">
+          <tr>
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.creationDate}}</td>
+            <td>{{task.dueDate}}</td>
+          </tr>
+        </tbody>
+      </table>
     <button type="button" (click)="openNewTaskForm()" class="btn btn-transparent add-task-button" >
         <i class="fa fa-plus " aria-hidden="true "> Task</i>
     </button>
