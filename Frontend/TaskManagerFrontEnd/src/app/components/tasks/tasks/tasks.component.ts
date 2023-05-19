@@ -1,12 +1,13 @@
 import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TabsComponent } from '../../tabs/tabs.component';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss']
+  styleUrls: ['./tasks.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TasksComponent {
 

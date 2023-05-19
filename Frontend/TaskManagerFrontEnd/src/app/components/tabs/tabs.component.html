@@ -1,5 +1,5 @@
 <nav>
-    <ul class="nav nav-tabs justify-content-center dark-theme">
+    <ul class="nav nav-tabs justify-content-center tab-theme">
         <li class="nav-item" *ngFor="let taskType of taskTypes">
             <button class="nav-link" [class.active]="activeTabId === taskType.id" (click)="selectTab(taskType.id)" [disabled]="isButtonDisabled" >{{taskType.name}}</button>
         </li>

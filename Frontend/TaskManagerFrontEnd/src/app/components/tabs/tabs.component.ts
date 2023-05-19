@@ -1,11 +1,12 @@
 import { TaskType } from 'src/app/models/entities/task-type';
 import { TaskTypeService } from './../../services/task-type/task-type.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  styleUrls: ['./tabs.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TabsComponent implements OnInit {
 

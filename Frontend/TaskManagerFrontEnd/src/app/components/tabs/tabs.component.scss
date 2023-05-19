@@ -1,21 +1,13 @@
-.custom-green-text {
-    color: green;
+.tab-theme {
+  background-color: #222831;
+  color: #EEEEEE;
 }
 
-.custom-red-text {
-    color: red;
+.tab-theme .nav-link {
+  color: #EEEEEE;
 }
 
-.dark-theme {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .dark-theme .nav-link {
-    color: #ffffff;
-  }
-  
-  .dark-theme .nav-link.active {
-    background-color: #d5ffde7a;
-  }
-  
+.tab-theme .nav-link.active {
+  background-color: #EEEEEE;
+  color: #00ADB5;
+}
