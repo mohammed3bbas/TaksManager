@@ -44,4 +44,9 @@ public class TaskController {
     public Task updateTask(@RequestBody TaskDTO taskDTO){
         return taskService.updateTask(taskDTO);
     }
+
+    @DeleteMapping()
+    public void deleteTask(@RequestParam Long id){
+        taskService.deleteTaskById(id);
+    }
 }

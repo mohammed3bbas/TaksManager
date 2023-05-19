@@ -33,7 +33,6 @@ export class TasksComponent {
       console.log(response);
       this.tasks = response;
       this.filteredTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId);
-      // this.completedTasks = this.tasks.filter(task => task.taskType.id === this.taskTypeId && task.done === true);
     });
   }
 
@@ -69,5 +68,25 @@ export class TasksComponent {
           });;
       }
     }
+  }
+
+  deleteTask(event: any, taskId: number): void {
+    
+    if(event){
+      this.taskService.deleteTask(taskId).subscribe(
+        () => {
+          this.fetchTasksAndFilter();
+          
+        },
+        (error) => {
+          console.error('Error deleting task :', error);
+        }
+      );
+      
+      
+
+    }
+    
+
   }
 }
