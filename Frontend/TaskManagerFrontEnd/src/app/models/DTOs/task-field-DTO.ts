@@ -3,7 +3,7 @@ export class TaskFieldDTO {
         public id: number,
         public name: string,
         public fieldType: string,
-        public isRequired: boolean,
+        public required: boolean,
         public taskTypeId: number
     ) { }
 }

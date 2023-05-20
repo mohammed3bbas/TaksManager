@@ -1,3 +1,4 @@
+import { FieldValueDTO } from './../../models/DTOs/field-value-DTO';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,5 +15,9 @@ export class FieldValueService {
 
   public getAllFieldValues(): Observable<FieldValue[]> {
     return this.http.get<FieldValue[]>(`${this.apiServerUrl}`)
+  }
+
+  public addFieldValue(fieldValueDTO : FieldValueDTO) {
+    return this.http.post<FieldValue>(`${this.apiServerUrl}` , fieldValueDTO);
   }
 }

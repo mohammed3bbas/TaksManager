@@ -1,22 +1,44 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" formControlName="name">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" formControlName="name">
+    <div *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched" class="error-message alert alert-danger">
+      <p class="mb-0">This field is required.</p>
     </div>
-    <div class="form-group">
-        <label for="description">description</label>
-        <input type="text" class="form-control" formControlName="description">
-      </div>
-      <div class="form-group">
-        <label for="dueDate">Due date</label>
-        <input type="text" class="form-control" formControlName="dueDate">
-      </div>
-      <div class="form-group">
-        <label for="taskTypeId">Task type Id</label>
-        <input type="text" class="form-control" formControlName="taskTypeId">
-      </div>
-    <div>
-      <h1></h1>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" formControlName="description">
+    <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched" class="error-message alert alert-danger">
+      <p class="mb-0">This field is required.</p>
     </div>
-    <button type="submit" class="btn btn-primary" >Add Task Type</button>
-  </form>
+  </div>
+  <div class="form-group">
+    <label for="dueDate">Due Date</label>
+    <input type="text" class="form-control" formControlName="dueDate">
+    <div *ngIf="taskForm.get('dueDate')?.invalid && taskForm.get('dueDate')?.touched" class="error-message alert alert-danger">
+      <p class="mb-0">This field is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="taskTypeId">Task Type ID</label>
+    <input type="text" class="form-control" formControlName="taskTypeId">
+    <div *ngIf="taskForm.get('taskTypeId')?.invalid && taskForm.get('taskTypeId')?.touched" class="error-message alert alert-danger">
+      <p class="mb-0">This field is required.</p>
+    </div>
+  </div>
+  <div *ngFor="let taskField of filteredTaskFields">
+    <div class="form-group">
+      <label for="{{ taskField.id }}">{{ taskField.name }}</label>
+      <input type="text" class="form-control" [formControlName]="taskField.id.toString()">
+      <div *ngIf="taskForm.get(taskField.id.toString())?.invalid && taskForm.get(taskField.id.toString())?.touched"
+        class="error-message alert alert-danger">
+        <p class="mb-0">This field is required.</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1></h1>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Task Type</button>
+</form>

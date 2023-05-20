@@ -4,6 +4,6 @@ export interface TaskField {
     id: number;
     name: string;
     fieldType: string;
-    isRequired: boolean;
+    required: boolean;
     taskType: TaskType;
 }
