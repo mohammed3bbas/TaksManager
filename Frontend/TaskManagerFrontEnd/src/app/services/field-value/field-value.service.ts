@@ -20,4 +20,8 @@ export class FieldValueService {
   public addFieldValue(fieldValueDTO : FieldValueDTO) {
     return this.http.post<FieldValue>(`${this.apiServerUrl}` , fieldValueDTO);
   }
+
+  public updateFieldValue(fieldValueDTO : FieldValueDTO) {
+    return this.http.put<FieldValue>(`${this.apiServerUrl}` , fieldValueDTO);
+  }
 }

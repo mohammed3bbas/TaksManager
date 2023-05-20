@@ -28,4 +28,8 @@ public class FieldValueController {
     public FieldValue addFieldValue(@RequestBody FieldValueDTO fieldValueDTO){
         return fieldValueService.createFieldValue(fieldValueDTO);
     }
+    @PutMapping()
+    public FieldValue updateFieldValue(@RequestBody FieldValueDTO fieldValueDTO){
+        return fieldValueService.updateFieldValue(fieldValueDTO);
+    }
 }

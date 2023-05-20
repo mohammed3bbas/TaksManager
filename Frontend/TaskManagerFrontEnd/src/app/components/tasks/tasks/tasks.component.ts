@@ -1,6 +1,6 @@
+import { TaskField } from 'src/app/models/entities/task-field';
 import { FieldValue } from './../../../models/entities/field-value';
 import { FieldValueService } from './../../../services/field-value/field-value.service';
-import { TaskField } from './../../../models/entities/task-field';
 import { Task } from 'src/app/models/entities/task';
 import { TaskService } from './../../../services/task/task.service';
 import { TaskFieldService } from './../../../services/task-field/task-field.service';
@@ -8,6 +8,7 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TabsComponent } from '../../tabs/tabs.component';
 import { Router } from '@angular/router';
 import { TaskDTO } from 'src/app/models/DTOs/task-DTO';
+import { FieldValueDTO } from 'src/app/models/DTOs/field-value-DTO';
 
 @Component({
   selector: 'app-tasks',
@@ -121,15 +122,49 @@ export class TasksComponent {
     );
   }
   
-  getFieldValue(taskId: number, fieldId: number): string {
+  getFieldValue(taskId: number, fieldId: number): { id: number, value: string } {
     const fieldValue = this.filteredFieldValues.find(
       (fieldValue) => fieldValue.task.id === taskId && fieldValue.taskField.id === fieldId
     );
-    return fieldValue ? fieldValue.field_value : '';
+    return fieldValue ? { id: fieldValue.id, value: fieldValue.field_value } : { id: 0, value: ' ' };
   }
 
-  editFieldValues(){
-    this.editMode = !this.editMode;
+  setFieldValue(event : Event ,id : number ){
+    const inputValue = (event.target as HTMLElement).innerText;
+    console.log(inputValue,id);
+    const recordToUpdate = this.filteredFieldValues.find(
+      (fieldValue) => fieldValue.id === id
+    );
+    if (recordToUpdate) {
+      recordToUpdate.field_value = inputValue;
+    }
   }
   
+
+  editFieldValues() {
+    this.editMode = !this.editMode;
+    if (!this.editMode) {
+      this.iterateEditedValues();
+    }
+  }
+
+  iterateEditedValues() {
+    for (const task of this.filteredTasks) {
+      for (const taskField of this.filteredTaskFields) {
+        const fieldValue = this.getFieldValue(task.id, taskField.id);
+        console.log(
+          `Task ID: ${task.id}, Field ID: ${taskField.id}, Field Value: ${fieldValue.value}  Field ValueId: ${fieldValue.id}`
+        );
+        const fieldValueDTO: FieldValueDTO = new FieldValueDTO(
+          fieldValue.id,
+          taskField.id,
+          task.id,
+          fieldValue.value
+        );
+        this.fieldValueService.updateFieldValue(fieldValueDTO).subscribe((result : FieldValue) =>{
+          console.log(result);
+        })
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@
 <div *ngIf="taskTypeId != 0">
   <table class="table">
     <thead class="thead-dark">
-      <tr> 
+      <tr>
         <th scope="col">
           <button type="button" class="btn" (click)="editFieldValues()">
             <i class="fa fa-edit"></i> Edit
@@ -30,13 +30,16 @@
           <td [contentEditable]=editMode >{{ task.description }}</td>
           <td [contentEditable]=editMode >{{ task.creationDate }}</td>
           <td [contentEditable]=editMode >{{ task.dueDate }}</td>
-          <td *ngFor="let taskField of filteredTaskFields" [contentEditable]=editMode> 
+          <td *ngFor="let taskField of filteredTaskFields" >
             <ng-container *ngIf="hasFieldValue(task.id, taskField.id)">
-              <span>
-                {{ getFieldValue(task.id, taskField.id) }}
+              <span (input)="setFieldValue($event, getFieldValue(task.id, taskField.id).id || -1)" [contentEditable]="editMode">
+                {{ getFieldValue(task.id, taskField.id).value }}
               </span>
+              <input type="hidden" [value]="getFieldValue(task.id, taskField.id).id">
             </ng-container>
           </td>
+          
+                  
           <td>
             <button type="button" (click)="deleteTask($event, task.id)" class="btn btn-transparent custom-red-text" [disabled]=editMode >
               <i class="fa fa-trash" aria-hidden="true"></i>
