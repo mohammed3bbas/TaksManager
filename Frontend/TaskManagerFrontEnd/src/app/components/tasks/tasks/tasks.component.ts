@@ -24,6 +24,7 @@ export class TasksComponent {
   filteredFieldValues: FieldValue[] = [];
   FieldValues: FieldValue[] = [];
   filteredTaskFields: TaskField[] = [];
+  editMode : boolean =false;
   @ViewChild(TabsComponent) tabsComponent: TabsComponent | undefined;
 
   constructor(
@@ -125,6 +126,10 @@ export class TasksComponent {
       (fieldValue) => fieldValue.task.id === taskId && fieldValue.taskField.id === fieldId
     );
     return fieldValue ? fieldValue.field_value : '';
+  }
+
+  editFieldValues(){
+    this.editMode = !this.editMode;
   }
   
 }

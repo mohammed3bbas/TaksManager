@@ -4,7 +4,11 @@
   <table class="table">
     <thead class="thead-dark">
       <tr> 
-        <th scope="col"></th>
+        <th scope="col">
+          <button type="button" class="btn" (click)="editFieldValues()">
+            <i class="fa fa-edit"></i> Edit
+          </button>
+        </th>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
@@ -18,21 +22,23 @@
       <ng-container *ngFor="let task of filteredTasks">
         <tr [ngClass]="{ 'completed': task.done }">
           <th>
-            <input class="form-check-input" type="checkbox" [value]="task.id" [checked]="task.done"
+            <input class="form-check-input" type="checkbox" [value]="task.id" [disabled]=editMode [checked]="task.done"
               (change)="updateCheckedTasks($event, task.id)">
           </th>
           <th scope="row">{{ task.id }}</th>
-          <td>{{ task.name }}</td>
-          <td>{{ task.description }}</td>
-          <td>{{ task.creationDate }}</td>
-          <td>{{ task.dueDate }}</td>
-          <td *ngFor="let taskField of filteredTaskFields"> 
+          <td [contentEditable]=editMode >{{ task.name }}</td>
+          <td [contentEditable]=editMode >{{ task.description }}</td>
+          <td [contentEditable]=editMode >{{ task.creationDate }}</td>
+          <td [contentEditable]=editMode >{{ task.dueDate }}</td>
+          <td *ngFor="let taskField of filteredTaskFields" [contentEditable]=editMode> 
             <ng-container *ngIf="hasFieldValue(task.id, taskField.id)">
-              {{ getFieldValue(task.id, taskField.id) }}
+              <span>
+                {{ getFieldValue(task.id, taskField.id) }}
+              </span>
             </ng-container>
           </td>
           <td>
-            <button type="button" (click)="deleteTask($event, task.id)" class="btn btn-transparent custom-red-text">
+            <button type="button" (click)="deleteTask($event, task.id)" class="btn btn-transparent custom-red-text" [disabled]=editMode >
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </td>
@@ -40,7 +46,7 @@
       </ng-container>
     </tbody>
   </table>
-  <button type="button" (click)="openNewTaskForm()" class="btn btn-transparent add-task-button">
+  <button type="button" (click)="openNewTaskForm()" class="btn btn-transparent add-task-button" [disabled]=editMode>
     <i class="fa fa-plus" aria-hidden="true"> Task</i>
   </button>
 </div>
